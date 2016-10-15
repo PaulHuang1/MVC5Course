@@ -18,7 +18,7 @@ namespace MVC5Course.Controllers
         public ActionResult Index()
         {
             var client = db.Client.Include(c => c.Occupation);
-            client = client.Take(10);
+            client = client.OrderByDescending(c=>c.ClientId).Take(10);
             return View(client.ToList());
         }
 
