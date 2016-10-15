@@ -19,14 +19,14 @@ namespace MVC5Course.Controllers
         {
             var client = db.Client.Include(c => c.Occupation);
 
-            if(string.IsNullOrEmpty(search))
+            if(!string.IsNullOrEmpty(search))
             {
                 client = client.Where(c => c.FirstName.Contains(search));
             }
 
             client = client.OrderByDescending(c=>c.ClientId).Take(10);
 
-            return View(client.ToList());
+            return View(client);
         }
 
         // GET: Clients/Details/5
