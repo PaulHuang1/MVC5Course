@@ -7,12 +7,14 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create") |
+    
+    @Html.ActionLink("價格增加20%", "Add20Percent")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProductName)
+            @Html.DisplayNameFor(model => model.ProductName)  
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Price)
@@ -30,6 +32,8 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.ProductName)
+
+            @Html.ActionLink("加上驚嘆號", "Update", new { id = item.ProductId})
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)
