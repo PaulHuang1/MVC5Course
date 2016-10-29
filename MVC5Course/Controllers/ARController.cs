@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace MVC5Course.Controllers
 {
-    public class ARController : Controller
+    public class ARController : BaseController
     {
         // GET: AR
         public ActionResult Index()
@@ -42,6 +42,16 @@ namespace MVC5Course.Controllers
             var filePath = Server.MapPath("~/Content/PPAP.jpg");
 
             return File(filePath, "image/jpeg", "PPAP.jpg");
+        }
+
+        public ActionResult JsonTest()
+        {
+            //停止循環參考
+            db.Configuration.LazyLoadingEnabled = false;
+
+            var data = db.Product.OrderBy(p => p.ProductId).Take(10).ToList();
+
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
     }
 }
