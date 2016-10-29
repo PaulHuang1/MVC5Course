@@ -20,6 +20,12 @@ namespace MVC5Course.Models
         {
             return this.All().OrderByDescending(p => p.ProductId).Take(takeSize);
         }
+
+        public override void Delete(Product product)
+        {
+            product.IsDeleted = true;
+            //因controller已經呼叫一次UnitOfWork.Commit();所以這邊不需要再呼叫，不然會造成發出兩次交易
+        }
     }
 
 	public  interface IProductRepository : IRepository<Product>
