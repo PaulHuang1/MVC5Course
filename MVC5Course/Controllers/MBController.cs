@@ -7,13 +7,14 @@ using System.Web.Mvc;
 
 namespace MVC5Course.Controllers
 {
+    [LocalDebugOnly]
     public class MBController : BaseController
     {
+        [Share頁面上常用的ViewBag變數資料]
         // GET: MB
         public ActionResult Index()
         {
-            ViewData["Temp1"] = "暫存資料 Temp1";
-
+            
             var b = new ClientLoginViewModel()
             {
                 FirstName = "Paul",
