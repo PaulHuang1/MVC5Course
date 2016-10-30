@@ -1,6 +1,7 @@
 ﻿using MVC5Course.Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 namespace MVC5Course.Controllers
 {
     [LocalDebugOnly]
+    [HandleError(ExceptionType = typeof(DbEntityValidationException), View = "Error_DbEntityValidationException")]
     public class MBController : BaseController
     {
         [Share頁面上常用的ViewBag變數資料]
@@ -65,8 +67,8 @@ namespace MVC5Course.Controllers
              *              item[1].ProductId
              */
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 foreach (var item in items)
                 {
                     var product = db.Product.Find(item.ProductId);
@@ -79,7 +81,7 @@ namespace MVC5Course.Controllers
                 db.SaveChanges();
 
                 return RedirectToAction("ProductList");
-            }
+            //}
              
             return View();
         }
