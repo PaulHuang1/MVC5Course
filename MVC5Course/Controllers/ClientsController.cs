@@ -11,12 +11,11 @@ using MVC5Course.Models.ViewModels;
 
 namespace MVC5Course.Controllers
 {
-    public class ClientsController : Controller
+    public class ClientsController : BaseController
     {
-        private FabricsEntities db = new FabricsEntities();
 
         // GET: Clients
-        public ActionResult Index(string search)
+        public ActionResult Index(string search, int? CreditRating, string Gender)
         {
             var client = db.Client.Include(c => c.Occupation);
 
@@ -26,6 +25,11 @@ namespace MVC5Course.Controllers
             }
 
             client = client.OrderByDescending(c=>c.ClientId).Take(10);
+
+            var options = (from p in db.Client select p.CreditRating).Distinct().OrderBy(p => p).ToList();
+            ViewBag.CreditRating = new SelectList(options);
+
+            ViewBag.Gender = new SelectList(new string[] { "M", "F" });
 
             return View(client);
         }
@@ -46,7 +50,7 @@ namespace MVC5Course.Controllers
         }
 
         // GET: Clients/Create
-        [ChildActionOnly]
+        //[ChildActionOnly]
         public ActionResult Create()
         {
             ViewBag.OccupationId = new SelectList(db.Occupation, "OccupationId", "OccupationName");
