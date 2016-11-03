@@ -27,7 +27,10 @@ namespace MVC5Course.Models
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string Gender { get; set; }
+
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> DateOfBirth { get; set; }
+        [UIHint("CreditRating")]
         public Nullable<double> CreditRating { get; set; }
         public string XCode { get; set; }
         public Nullable<int> OccupationId { get; set; }
