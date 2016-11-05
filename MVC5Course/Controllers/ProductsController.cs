@@ -134,6 +134,11 @@ namespace MVC5Course.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult test()
+        {
+            return PartialView();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

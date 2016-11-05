@@ -45,7 +45,6 @@ namespace MVC5Course.Controllers
         [Route("prods/{id}/orderlines")]
         public IHttpActionResult GetProductOrderLine(int id)
         {
-
             db.Configuration.ProxyCreationEnabled = false;
 
             Product product = db.Product.Include("OrderLine").FirstOrDefault(p => p.ProductId == id);
